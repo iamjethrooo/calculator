@@ -1,0 +1,93 @@
+/* Basic resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+/* Basic resets */
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none; }
+
+main {
+  height: 95%;
+  width: 100%; }
+
+.history-panel,
+.io-panel {
+  user-select: text;
+  display: block; }
+
+#buttons-panel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "clear divide multiply delete" "seven eight nine subtract" "four five six add" "one two three equals" "zero zero period equals"; }
+
+.button {
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none; }
+
+/* Assign grid-areas to buttons */
+#clear {
+  grid-area: clear; }
+
+#delete {
+  grid-area: delete; }
+
+#equals {
+  grid-area: equals; }
+
+#nine {
+  grid-area: nine; }
+
+#eight {
+  grid-area: eight; }
+
+#seven {
+  grid-area: seven; }
+
+#six {
+  grid-area: six; }
+
+#five {
+  grid-area: five; }
+
+#four {
+  grid-area: four; }
+
+#three {
+  grid-area: three; }
+
+#two {
+  grid-area: two; }
+
+#one {
+  grid-area: one; }
+
+#zero {
+  grid-area: zero; }
+
+#period {
+  grid-area: period; }
+
+#divide {
+  grid-area: divide; }
+
+#multiply {
+  grid-area: multiply; }
+
+#subtract {
+  grid-area: subtract; }
+
+#add {
+  grid-area: add; }
+
+/* Assign grid-areas to buttons */
+
+/*# sourceMappingURL=style.css.map */
