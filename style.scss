@@ -18,14 +18,18 @@ body {
 main {
   height: 95%;
   width: 100%;
+  border: 1px solid black;
 }
 
-.history-panel,
-.io-panel {
+#history-panel,
+#io-panel {
   user-select: text;
   display: block;
+  border: 1px solid red;
+  height: 50px;
 }
 
+/* Buttons panel */
 #buttons-panel {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -118,3 +122,5 @@ main {
 }
 
 /* Assign grid-areas to buttons */
+
+/* Buttons panel */
