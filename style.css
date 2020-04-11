@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
 /* Basic resets */
 * {
   margin: 0;
@@ -11,41 +12,70 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  user-select: none; }
+  user-select: none;
+  font-family: "PT Mono", monospace; }
 
 main {
-  height: 95%;
-  width: 100%;
-  border: 1px solid black; }
+  height: 480px;
+  width: 350px; }
 
 #history-panel,
 #io-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   user-select: text;
-  display: block;
-  border: 1px solid red;
+  background-color: black;
+  color: white;
   height: 50px; }
+
+#history-panel {
+  font-size: 15px;
+  height: 5%; }
+
+#io-panel {
+  font-size: 50px;
+  height: 15%; }
 
 /* Buttons panel */
 #buttons-panel {
+  height: 80%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas: "clear divide multiply delete" "seven eight nine subtract" "four five six add" "one two three equals" "zero zero period equals"; }
 
 .button {
+  border: 1px solid rgba(100, 100, 100, 0.75);
   background-color: transparent;
   cursor: pointer;
-  user-select: none; }
+  user-select: none;
+  font-size: 15px; }
+  .button:hover {
+    transform: scale(1.05); }
+  .button:focus {
+    outline: none; }
+
+.number {
+  background-color: #323232;
+  color: white; }
+
+.operator {
+  background-color: #d3d4d8; }
 
 /* Assign grid-areas to buttons */
 #clear {
-  grid-area: clear; }
+  grid-area: clear;
+  background-color: #d3d4d8; }
 
 #delete {
-  grid-area: delete; }
+  grid-area: delete;
+  background-color: #d3d4d8; }
 
 #equals {
-  grid-area: equals; }
+  grid-area: equals;
+  background-color: #ff8500;
+  color: white; }
 
 #nine {
   grid-area: nine; }

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
 /* Basic resets */
 * {
   margin: 0;
@@ -6,6 +7,8 @@
 }
 /* Basic resets */
 
+$default-font-size: 15px;
+
 body {
   height: 100vh;
   width: 100vw;
@@ -13,24 +16,38 @@ body {
   align-items: center;
   justify-content: space-between;
   user-select: none;
+  font-family: "PT Mono", monospace;
 }
 
 main {
-  height: 95%;
-  width: 100%;
-  border: 1px solid black;
+  height: 480px;
+  width: 350px;
 }
 
 #history-panel,
 #io-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   user-select: text;
-  display: block;
-  border: 1px solid red;
+  background-color: black;
+  color: white;
   height: 50px;
+}
+
+#history-panel {
+  font-size: $default-font-size;
+  height: 5%;
+}
+
+#io-panel {
+  font-size: 50px;
+  height: 15%;
 }
 
 /* Buttons panel */
 #buttons-panel {
+  height: 80%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
@@ -43,22 +60,43 @@ main {
 }
 
 .button {
+  border: 1px solid rgba(100, 100, 100, 0.75);
   background-color: transparent;
   cursor: pointer;
   user-select: none;
+  font-size: $default-font-size;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.number {
+  background-color: rgb(50, 50, 50);
+  color: white;
+}
+
+.operator {
+  background-color: rgb(211, 212, 216);
 }
 
 /* Assign grid-areas to buttons */
 #clear {
   grid-area: clear;
+  background-color: rgb(211, 212, 216);
 }
 
 #delete {
   grid-area: delete;
+  background-color: rgb(211, 212, 216);
 }
 
 #equals {
   grid-area: equals;
+  background-color: rgb(255, 133, 0);
+  color: white;
 }
 
 #nine {
