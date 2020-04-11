@@ -34,6 +34,11 @@ function updateDisplay() {
   HISTORY_PANEL.textContent = historyText;
 }
 
+function deleteOne() {
+  ioText = ioText.substring(0, ioText.length - 1);
+  updateDisplay();
+}
+
 // Operations
 function add(x, y) {
   return (parseFloat(x) + parseFloat(y)).toString();
@@ -49,6 +54,32 @@ function multiply(x, y) {
 
 function divide(x, y) {
   return (parseFloat(x) / parseFloat(y)).toString();
+}
+
+function calculate() {
+  if (ioText && operator) {
+    // If ioText and operator is not empty
+    secondNumber = ioText;
+    switch (operator) {
+      case "+":
+        result = add(firstNumber, secondNumber);
+        break;
+      case "-":
+        result = subtract(firstNumber, secondNumber);
+        break;
+      case "*":
+        result = multiply(firstNumber, secondNumber);
+        break;
+      case "/":
+        result = divide(firstNumber, secondNumber);
+        break;
+    }
+    ioText = result;
+    updateDisplay();
+
+    clickedEquals = true;
+    operator = "";
+  }
 }
 
 // Add event listeners
@@ -93,35 +124,71 @@ OPERATORS.forEach((operatorButton) => {
   });
 });
 
-DELETE.addEventListener("click", (e) => {
-  ioText = ioText.substring(0, ioText.length - 1);
-  updateDisplay();
-});
+DELETE.addEventListener("click", deleteOne);
 
 CLEAR.addEventListener("click", clear);
 
-EQUALS.addEventListener("click", (e) => {
-  if (ioText && operator) {
-    // If ioText and operator is not empty
-    secondNumber = ioText;
-    switch (operator) {
-      case "+":
-        result = add(firstNumber, secondNumber);
-        break;
-      case "-":
-        result = subtract(firstNumber, secondNumber);
-        break;
-      case "*":
-        result = multiply(firstNumber, secondNumber);
-        break;
-      case "/":
-        result = divide(firstNumber, secondNumber);
-        break;
-    }
-    ioText = result;
-    updateDisplay();
+EQUALS.addEventListener("click", calculate);
 
-    clickedEquals = true;
-    operator = "";
+document.addEventListener("keypress", (e) => {
+  console.log(e.keyCode);
+  // Number buttons
+  if (
+    (e.keyCode >= 48 && e.keyCode <= 57) ||
+    (e.keyCode >= 96 && e.keyCode <= 105) ||
+    e.keyCode == 46 ||
+    e.keyCode == 110
+  ) {
+    if (clickedEquals) {
+      // Next input will be directed to secondNumber if previous button clicked is "Equals"
+      ioText = "";
+      clickedEquals = false;
+    }
+    ioText += String.fromCharCode(e.keyCode);
+    updateDisplay();
+  }
+
+  // Operator buttons
+  if (
+    e.keyCode == 47 ||
+    e.keyCode == 43 ||
+    e.keyCode == 45 ||
+    e.keyCode == 42
+  ) {
+    if (!operator) {
+      // If operator is empty
+      operator = String.fromCharCode(e.keyCode);
+      if (!secondNumber) {
+        // Next input will be directed to secondNumber if secondNumber is empty
+        firstNumber = ioText;
+        historyText = firstNumber + operator;
+        ioText = "";
+        updateDisplay();
+        return;
+      }
+      firstNumber = result;
+      historyText = firstNumber + operator;
+      secondNumber = "";
+      result = "";
+      ioText = "";
+      updateDisplay();
+      // Else
+      return;
+    }
+    operator = String.fromCharCode(e.keyCode);
+    historyText = historyText.substring(0, historyText.length - 1);
+    historyText += operator;
+    updateDisplay();
+  }
+
+  // Enter or equals button
+  if (e.keyCode == 61 || e.keyCode == 13) {
+    calculate();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode == 8) {
+    deleteOne();
   }
 });
